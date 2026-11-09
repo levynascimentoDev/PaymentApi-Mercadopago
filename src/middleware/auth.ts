@@ -19,11 +19,6 @@ export class AuthMiddleware  {
             const XRequestId = req.headers["x-request-id"] as string | undefined;
             const XSignature = req.headers["x-signature"] as string | undefined;
             const dataId = (req.query as Record<string, string>)["data.id"] as string | undefined;
-            console.log({
-                XRequestId,
-                XSignature,
-                dataId
-            });
             
             if (!XRequestId || !XSignature || !dataId) return reply.status(400).send({
                 success:false,
@@ -47,6 +42,7 @@ export class AuthMiddleware  {
                 success:false,
                 message:"Unauthorized"
             });
+            
         } catch (error) {
             console.log(error);
         }
