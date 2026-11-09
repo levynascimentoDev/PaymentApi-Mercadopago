@@ -19,7 +19,7 @@ export class PaymentsController {
             };
         } catch (error) {
             console.log(error)
-            return reply.status(401).send({
+            return reply.status(400).send({
                 success:false,
                 message:"Bad Request"
             })

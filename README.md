@@ -1,4 +1,4 @@
-# api_payments
+# ApiPayment from Esp32-PayTrigger
 
 To install dependencies:
 
@@ -6,18 +6,40 @@ To install dependencies:
 bun install
 ```
 
-To run:
-
+## Prisma (ORM)
+To Generate types 
 ```bash
-bun run index.ts
+bunx prisma generate
 ```
 
-To type check:
-
+To create / run migrations 
 ```bash
-bun check
+bunx prisma migrate deploy
 ```
 
-Run `bun fmt` to format the code.
 
-This project was created using `bun init` in bun v1.4.4. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+## Development
+```bash
+bun run dev
+```
+
+## Enviroments 
+
+- Mercado pago 
+```env
+ACCESS_TOKEN_MERCADOPAGO="" // ACCESS TOKEN MERCADOPAGO
+SECRET_WEBHOOK_MERCADOPAGO="" // WEBHOOK SECRET TO VALIDADE REQUEST
+```
+- App 
+```env
+ESP32_HOST="" // local ip from WebServer of Esp32
+API_TOKEN="" // Api Token Bearer to auth
+```
+
+*Use this code on terminal to generate Api token*
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+
+

@@ -1,9 +1,14 @@
 import type { FastifyInstance } from "fastify";
 import { PaymentsController } from "../controllers/payments.controller";
+import { AuthMiddleware } from "../middleware/auth";
 
 
 export const paymentsRoutes = async (app:FastifyInstance) => {
-    app.post('/', PaymentsController.create);
+    app.post(
+        '/', 
+        { onRequest:AuthMiddleware.authBearer }, 
+        PaymentsController.create
+    );
 };
 
 

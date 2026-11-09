@@ -39,9 +39,7 @@ export class PaymentsService {
             id:response.id,
             status:response.status,
             payload:qr_code,
-            qr_code:qr_code_base64
+            qr_code:"data:image/png;base64," + qr_code_base64
         }
-
-
     }
 }
