@@ -34,7 +34,7 @@ export class AuthMiddleware  {
             
             const text = `id:${dataId};request-id:${XRequestId};ts:${ts};`
             const result = crypto
-                .createHmac("sha256", env.SECRET_WEBHOOK_MERCADOPAGO)
+                .createHmac("sha256", env.MERCADOPAGO_WEBHOOK_SECRET)
                 .update(text)
                 .digest('hex');
 

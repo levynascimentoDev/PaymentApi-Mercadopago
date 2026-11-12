@@ -6,8 +6,9 @@ const envSchema = z.object({
     ACCESS_TOKEN_MERCADOPAGO:z.string(),
     ESP32_HOST:z.string(),
     API_TOKEN:z.string(),
-    SECRET_WEBHOOK_MERCADOPAGO:z.string(),
-    REDIS_URL:z.string()
+    MERCADOPAGO_WEBHOOK_SECRET:z.string(),
+    REDIS_URL:z.string(),
+    PAYTRIGGER_WEBHOOK_SECRET:z.string()
 });
 
 export const env = envSchema.parse(process.env);

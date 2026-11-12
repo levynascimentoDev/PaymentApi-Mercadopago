@@ -1,11 +1,9 @@
 # ApiPayment from Esp32-PayTrigger
 
 To install dependencies:
-
 ```bash
 bun install
 ```
-
 ## Prisma (ORM)
 To Generate types 
 ```bash
@@ -17,18 +15,24 @@ To create / run migrations
 bunx prisma migrate deploy
 ```
 
-
-## Development
+## Application Production
+- (build) App in docker 
 ```bash
-bun run dev
+docker compose up -d
 ```
+
+- (start) start App
+```bash
+docker compose start
+```
+
 
 ## Enviroments 
 
 - Mercado pago 
 ```env
 ACCESS_TOKEN_MERCADOPAGO="" // ACCESS TOKEN MERCADOPAGO
-SECRET_WEBHOOK_MERCADOPAGO="" // WEBHOOK SECRET TO VALIDADE REQUEST
+MERCADOPAGO_WEBHOOK_SECRET="" // WEBHOOK SECRET TO VALIDADE REQUEST
 ```
 - App 
 ```env
