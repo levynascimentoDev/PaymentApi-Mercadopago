@@ -6,7 +6,7 @@ export const notificationQueue = new Queue(
     { 
         connection:redis,
         defaultJobOptions:{
-            attempts:20,
+            attempts:8,
             backoff: { type: 'exponential', delay: 5000 },
             removeOnComplete:true
         }

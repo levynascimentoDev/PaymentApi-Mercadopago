@@ -1,10 +1,10 @@
+import { client } from "../config/mqtt";
 import { notificationWorker } from "./notification.worker"
 
 
 const workers = [
     notificationWorker
 ];
-
 
 for (const worker of workers) {
     worker.on(
@@ -20,3 +20,6 @@ for (const worker of workers) {
 }
 
 console.log("Workers Iniciados");
+client.on("connect", () => {
+    console.log("MQTT conectado");
+});

@@ -55,7 +55,6 @@ export class PaymentsService {
             })
 
             await notificationQueue.add("mercadopago", {
-                url:`${env.ESP32_HOST}/webhook/payment`,
                 payment_id:response.id,
                 status:response.status
             });
