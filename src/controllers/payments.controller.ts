@@ -7,16 +7,14 @@ import { createPaymentSchema } from "../schemas/payments.schema";
 export class PaymentsController {
     public static async create(req: FastifyRequest, reply: FastifyReply) {
         try {
-
             const { amount } = createPaymentSchema.parse(req.body);
             const payment = await PaymentsService.createPayment(amount);
-            
-            return {
+            return reply.status(200).send({
                 success:true,
                 message:"payment was created.",
                 data:payment
-                
-            };
+            });
+
         } catch (error) {
             console.log(error)
             return reply.status(400).send({

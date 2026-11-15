@@ -23,7 +23,7 @@ export class PaymentsService {
             }
         })
 
-        const { qr_code, qr_code_base64 } = response.point_of_interaction?.transaction_data!
+        const { qr_code } = response.point_of_interaction?.transaction_data!
 
         if (!havePayment) {
             await prisma.payments.create({
@@ -40,7 +40,6 @@ export class PaymentsService {
             id: response.id,
             status: response.status,
             payload: qr_code,
-            qr_code: "data:image/png;base64," + qr_code_base64
         }
     }
 

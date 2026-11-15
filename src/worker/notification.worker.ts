@@ -10,7 +10,7 @@ export const notificationWorker = new Worker(
     async job => {
     
         switch (job.name) {
-            case 'mercadopago': {
+            case 'mercadopago': {   
                 const { url, ...data } = 
                     z.object({ url:z.string(), payment_id:z.number(), status:z.string() }).parse(job.data); 
 
@@ -21,8 +21,6 @@ export const notificationWorker = new Worker(
                     .createHmac('sha256', env.PAYTRIGGER_WEBHOOK_SECRET)
                     .update(`${timestamp}.${body}`)
                     .digest('hex')
-                console.log(`ts=${timestamp},v1=${signature}`);
-                console.log(body)
                     
                 await fetch(url, { 
                     method:'POST',
