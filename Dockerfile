@@ -7,6 +7,7 @@ RUN bun install
 
 COPY  . .
 RUN bunx prisma generate
+EXPOSE 8080
 
 CMD ["sh", "-c", "bunx prisma migrate deploy && bun run start" ]
 
