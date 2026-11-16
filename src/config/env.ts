@@ -5,6 +5,7 @@ const envSchema = z.object({
     DATABASE_URL:z.string(),
     ACCESS_TOKEN_MERCADOPAGO:z.string(),
     MERCADOPAGO_WEBHOOK_SECRET:z.string(),
+    API_TOKEN:z.string(),
     REDIS_URL:z.string(),
     PAYTRIGGER_WEBHOOK_SECRET:z.string(),
     MQTT_HOST:z.string(),
