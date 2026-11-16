@@ -13,7 +13,10 @@ export const notificationWorker = new Worker(
                 const data = 
                     z.object({ payment_id:z.number(), status:z.string() }).parse(job.data); 
 
-                client.publish("payment",JSON.stringify(data));
+                client.publish("payment", JSON.stringify(data), { qos: 1 }, (err) => {
+                    if (err) console.error("Falha ao publicar:", err);
+                    else console.log("Publicado em payment");
+                });
                 break;
             }
         };

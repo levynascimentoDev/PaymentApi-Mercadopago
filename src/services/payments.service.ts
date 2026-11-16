@@ -53,7 +53,7 @@ export class PaymentsService {
                     payment_id
                 }
             })
-
+            console.log(`Adicionando na fila payment: ${response.id}`)
             await notificationQueue.add("mercadopago", {
                 payment_id:response.id,
                 status:response.status
