@@ -9,6 +9,12 @@ export const paymentsRoutes = async (app:FastifyInstance) => {
         { onRequest:AuthMiddleware.authBearer }, 
         PaymentsController.create
     );
+    
+    app.delete(
+        '/{id}',
+        { onRequest:AuthMiddleware.authBearer },
+        PaymentsController.delete
+    );
 };
 
 

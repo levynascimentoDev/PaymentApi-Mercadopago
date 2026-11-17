@@ -22,6 +22,32 @@ export class PaymentsController {
                 message:"Bad Request"
             })
         }
+    }
+
+    public static async delete(req: FastifyRequest, reply: FastifyReply) {
+        try {
+
+            const { id } = req.params as { id:string };
         
+            const deleted = await PaymentsService.delete(id);
+            
+            if (!deleted) return reply.status(404).send({
+                success:false,
+                message:"Payment not found"
+            });
+
+            return {
+                success:true,
+                message:"Payment was deleted"
+            }
+            
+        
+        } catch (error) {
+            console.log(error)
+            return reply.status(400).send({
+                success:false,
+                message:"Bad Request"
+            })
+        }
     }
 };

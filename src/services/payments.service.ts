@@ -2,7 +2,6 @@ import { randomUUID } from "crypto";
 import { payment } from "../config/mercadopago";
 import { prisma } from "../database/db";
 import { notificationQueue } from "../queue/notification.queue";
-import { env } from "../config/env";
 
 
 export class PaymentsService {
@@ -63,5 +62,13 @@ export class PaymentsService {
         }
 
         return false;
+    }
+
+    public static async delete(id:string) {
+        const p = await prisma.payments.findUnique({ where:{ payment_id:id } })
+        if (!p) return false;
+        await prisma.payments.delete({ where:{ payment_id:id } });
+        await payment.cancel({ id:id })
+        return true;
     }
 }

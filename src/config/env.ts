@@ -7,7 +7,6 @@ const envSchema = z.object({
     MERCADOPAGO_WEBHOOK_SECRET:z.string(),
     API_TOKEN:z.string(),
     REDIS_URL:z.string(),
-    PAYTRIGGER_WEBHOOK_SECRET:z.string(),
     MQTT_HOST:z.string(),
     MQTT_PORT:z.coerce.number(),
     MQTT_USER:z.string(),

@@ -1,11 +1,11 @@
-import mqtt from "mqtt";
+    import * as mq from "mqtt" ;
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { env } from "./env";
 
 const caPath = join(import.meta.dir, "../../certs/emqxsl-ca.crt");
 
-export const client = mqtt.connect({
+export const mqtt = mq.connect({
     host:env.MQTT_HOST,
     port:env.MQTT_PORT,
     username:env.MQTT_USER,

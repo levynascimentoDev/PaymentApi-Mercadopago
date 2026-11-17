@@ -1,6 +1,6 @@
 import { Worker } from "bullmq";
 import { redis } from "../config/redis";
-import { client } from "../config/mqtt";
+import { mqtt } from "../config/mqtt";
 import z from "zod";
 
 
@@ -10,13 +10,9 @@ export const notificationWorker = new Worker(
     
         switch (job.name) {
             case 'mercadopago': {   
-                const data = 
-                    z.object({ payment_id:z.number(), status:z.string() }).parse(job.data); 
+                const data = z.object({ payment_id:z.number(), status:z.string() }).parse(job.data); 
 
-                client.publish("payment", JSON.stringify(data), { qos: 1 }, (err) => {
-                    if (err) console.error("Falha ao publicar:", err);
-                    else console.log("Publicado em payment");
-                });
+                mqtt.publish("payment", JSON.stringify(data), { qos: 1 });
                 break;
             }
         };
