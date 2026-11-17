@@ -11,7 +11,7 @@ export const paymentsRoutes = async (app:FastifyInstance) => {
     );
     
     app.delete(
-        '/{id}',
+            '/:id',
         { onRequest:AuthMiddleware.authBearer },
         PaymentsController.delete
     );
