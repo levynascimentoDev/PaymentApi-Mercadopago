@@ -7,5 +7,7 @@ RUN bun install
 
 COPY  . .
 
+ENV MQTT_CLIENT_ID=WORKER-779e3b1f-611b-4dda-9aeb-21984b661b1e
+
 CMD ["sh", "-c", "bun queue:work" ]
 

@@ -14,7 +14,7 @@ export const registerSubscribers = () => {
         { qos:1 }, 
         (err, granted) => {
             if (err) return console.log("Erro ao se increver no topicos!");    
-            console.log("✅ Incrito:" + granted);
+            console.log("✅ Incrito:" + granted?.toString());
         });
     });
     

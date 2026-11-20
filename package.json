@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "bun --watch run app.ts",
-    "start": "bun --hot run app.ts",
+    "start": "bun run app.ts",
     "queue:work": "bun run src/worker/index.ts"
   },
   "devDependencies": {
