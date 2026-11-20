@@ -13,9 +13,10 @@ export const registerSubscribers = () => {
            "payments/cancel" 
         ], 
         { qos:1 }, 
-        err => {
+        (err, g) => {
             console.log("Erro ao se increver no topicos!")    
             console.log(err);
+            console.log(g);
         });
     });
     
