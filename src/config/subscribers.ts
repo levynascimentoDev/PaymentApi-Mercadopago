@@ -7,10 +7,16 @@ import { createPaymentSchema } from "../schemas/payments.schema";
 
 export const registerSubscribers = () => {
     mqtt.on("connect", () => {
+        console.log("Se Inscrevendo nos topicos!");
         mqtt.subscribe([
            "payments/create",
            "payments/cancel" 
-        ]);
+        ], 
+        { qos:1 }, 
+        err => {
+            console.log("Erro ao se increver no topicos!")    
+            console.log(err);
+        });
     });
     
     mqtt.on("message", async (topic, payload) => {
