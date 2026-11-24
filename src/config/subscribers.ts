@@ -14,7 +14,8 @@ export const registerSubscribers = () => {
         { qos:1 }, 
         (err, granted) => {
             if (err) return console.log("Erro ao se increver no topicos!");    
-            console.log("✅ Incrito:" + granted?.toString());
+            console.log("Topicos Incritos:");
+            granted?.forEach(v => console.log(`✅ topic:${v.topic} qos:${v.qos}`));
         });
     });
     
@@ -26,7 +27,7 @@ export const registerSubscribers = () => {
 
             switch (topic) {
                 case "payments/create":
-
+                    
                     const { amount } = createPaymentSchema.parse(data);
                     const response = await PaymentsService.createPayment(amount);
                     mqtt.publish("payments/created", JSON.stringify(response));

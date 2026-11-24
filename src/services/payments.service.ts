@@ -8,7 +8,12 @@ export class PaymentsService {
     public static async createPayment(amount: number) {
 
         const havePayment = await prisma.payments.findFirst();
-        const idempotencyKey = havePayment ? havePayment.idempotency_key : randomUUID();
+        
+        if (havePayment && havePayment.amount.toNumber() != amount) await this.delete(havePayment.payment_id);
+        const idempotencyKey = 
+            havePayment && havePayment.amount.toNumber() == amount 
+            ? havePayment.idempotency_key 
+            : randomUUID();
 
         const response = await payment.create({
             body: {
@@ -39,7 +44,8 @@ export class PaymentsService {
             id: response.id,
             status: response.status,
             payload: qr_code,
-        }
+            value:response.transaction_amount
+        }   
     }
 
 
