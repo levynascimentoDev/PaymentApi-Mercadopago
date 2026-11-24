@@ -33,7 +33,17 @@ export const registerSubscribers = () => {
                     console.log(amount);
                     const response = await PaymentsService.createPayment(amount);
                     console.log(response);
-                    mqtt.publish("payments/created", JSON.stringify(response));
+                    mqtt.publish(
+                        "payments/created", 
+                        JSON.stringify(response), 
+                        { qos:1 }, 
+                        err => {
+                            if (err) {
+                                return console.log(err);
+                            }
+                            console.log("publicado com sucesso!");
+                        } 
+                    );
                     console.log("enviado payments/created")
 
                     break;
