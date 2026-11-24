@@ -23,28 +23,14 @@ export const registerSubscribers = () => {
 
         try {
             const data = JSON.parse(payload.toString());
-            console.log("Recebido:" + topic);
 
             switch (topic) {
                 case "payments/create":
                     
                     const { amount } = createPaymentSchema.parse(data);
 
-                    console.log(amount);
                     const response = await PaymentsService.createPayment(amount);
-                    console.log(response);
-                    mqtt.publish(
-                        "payments/created", 
-                        JSON.stringify(response), 
-                        { qos:1 }, 
-                        err => {
-                            if (err) {
-                                return console.log(err);
-                            }
-                            console.log("publicado com sucesso!");
-                        } 
-                    );
-                    console.log("enviado payments/created")
+                    mqtt.publish("payments/created", JSON.stringify(response));
 
                     break;
                 case "payments/cancel":
