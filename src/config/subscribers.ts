@@ -29,8 +29,12 @@ export const registerSubscribers = () => {
                 case "payments/create":
                     
                     const { amount } = createPaymentSchema.parse(data);
+
+                    console.log(amount);
                     const response = await PaymentsService.createPayment(amount);
+                    console.log(response);
                     mqtt.publish("payments/created", JSON.stringify(response));
+                    console.log("enviado payments/created")
 
                     break;
                 case "payments/cancel":
